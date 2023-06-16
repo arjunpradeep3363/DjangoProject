@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Edit Product Details</h4>
+<!--                    <p class="card-description">  </p>-->
+                    <form method="post" action="{% url 'updateproductdata' dataid=data.id %}" enctype="multipart/form-data" class="forms-sample">
+                    {% csrf_token %}
+                      <div class="form-group">
+                          <label for="exampleInputName1">Select Category</label><br>
+                          <select class="form-control" name="category" id="">
+                              <option>{{data.Category_Name}}</option>
+                              {% for i in category %}
+                              <option>{{i.Category_Name}}</option>
+                              {% endfor %}
+                          </select>
+                      <div class="form-group">
+                          <br>
+                        <label for="exampleInputName1">Product Name</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Product Name" name="pname" value="{{data.Product_Name}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail3">Price</label>
+                        <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Price" name="price" value="{{data.Price}}">
+                      </div>
+                           <div class="form-group">
+                        <label for="exampleTextarea1">Description</label>
+                        <textarea name="description" class="form-control" id="exampleTextarea1" rows="4">{{data.Description}}</textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputCity1">Brand</label>
+                        <input type="text" class="form-control" id="exampleInputCity1" placeholder="Brand" name="brand" value="{{data.Brand}}">
+                      </div>
+                          <div>
+                          <label for="exampleInputName1">Product Image</label>
+                              <img src="{{data.Product_Image.url}}" height="100px" width="100px" alt="">
+                          <input type="file" class="form-control" id="exampleInputName1" placeholder="Image" name="image">
+                      </div>
+
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      <button class="btn btn-dark">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+</body>
+</html>
+{% endblock %}

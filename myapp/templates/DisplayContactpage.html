@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-lg-12 stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Categories</h4>
+<!--                    <p class="card-description"> Add class <code>.table-{color}</code>-->
+<!--                    </p>-->
+                    <div class="table-responsive">
+                      <table class="table table-bordered table-contextual">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Subject</th>
+                            <th>Message</th>
+                          </tr>
+                        {% for i in data %}
+                        </thead>
+                        <tbody>
+                          <tr class="table-info">
+                            <td>{{i.Name}}</td>
+                            <td>{{i.Email}}</td>
+                            <td>{{i.Phone}}</td>
+                            <td>{{i.Subject}}</td>
+                            <td>{{i.Message}}</td>
+                             <td>
+                              <form action="{% url 'deletecontact' dataid=i.id %}">
+                                <button type="submit" class="btn btn-primary mr-2">Delete</button>
+                              </form>
+                            </td>
+                          </tr>
+                        {% endfor %}
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+</body>
+</html>
+{% endblock %}
